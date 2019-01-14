@@ -1,31 +1,4 @@
-<form novalidate [formGroup]="user" (ngSubmit)="onSubmit()" >
-  <label for="">
-    <span>Full name</span>
-    <input
-      type="text"
-      placeholder="Your full name"
-      formControlName="name">
-  </label>
-  <label for="">
-    <span>Email address</span>
-    <input
-      type="text"
-      placeholder="Your password"
-      formControlName="password">
-  </label>
-  <label for="">
-    <span>Confirm address</span>
-    <input
-      type="text"
-      placeholder="Confirm your password"
-      value=""
-      formControlName="passwordRepeat">
-  </label>
-  <button type="submit" [disabled]="user.invalid">Sig up</button>
-</form>
+<div class="container">
+  <app-formulario></app-formulario>
 
-<div
-class="error"
-*ngIf="user.get('name').hasError('required') && user.get('name').touched">
-  Nombre requerido
 </div>
