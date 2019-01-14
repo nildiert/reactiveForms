@@ -8,23 +8,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormularioComponent implements OnInit {
 
-  user: FormGroup;
+  public formValidate: boolean = false;
+  public alert: boolean = false;
+  public user: FormGroup;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.user = this.fb.group({
-      'name' : [''],
-      'lastname' : [''],
-      'identification' : [''],
-      'telephone' : ['']
+      name : '',
+      lastname : '',
+      identification : '',
+      telephone : ''
 
     });
   }
 
+
+
   reactiveForm = '';
-  onSubmit(value: string): void {
-    this.reactiveForm = JSON.stringify(value);
-    console.log(this.reactiveForm);
+  onSubmit(value: any): void {
+    if (value.name !== '' && value.lastname !== '' && value.identification !== '' && value.telephone !== '') {
+      this.reactiveForm = JSON.stringify(value);
+      this.formValidate = true;
+      this.alert = false;
+    }else{
+      this.alert = true;
+    }
+  }
+
+  cleanReactiveForm(){
+
+    this.user.controls['name'].setValue('');
+    this.user.controls['lastname'].setValue('');
+    this.user.controls['identification'].setValue('');
+    this.user.controls['telephone'].setValue('');
+    this.formValidate = false;
+
+    this.alert = false;
   }
 
 }
