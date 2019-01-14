@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
