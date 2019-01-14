@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-12 mt-2">
+    <form novalidate [formGroup]="user" (ngSubmit)="onSubmit(user.value)" >
+      <label for="">
+        <span>Full name</span>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Your full name"
+          [formControl]="user.controls['name']">
+      </label>
+      <label for="">
+        <span>Lastname</span>
+        <input
+          class="form-control"
+          placeholder="Your lastname"
+          [formControl]="user.controls['lastname']"
+          type="text">
+      </label>
+      <label for="">
+        <span>Identification</span>
+        <input
+          class="form-control"
+          placeholder="Your identification number"
+          [formControl]="user.controls['identification']"
+          type="text">
+      </label>
+      <label for="">
+        <span>Telephone</span>
+        <input
+          class="form-control"
+          placeholder="Your telephone"
+          [formControl]="user.controls['telephone']"
+          type="text">
+      </label>
+      <button type="submit" class="btn btn-info">Enviar</button>
+      <div *ngIf="reactiveForm">
+        <textarea style="text-align: center" class="form-control" [(ngModel)]="reactiveForm" [ngModelOptions]="{standalone: true}"  disabled></textarea>
+      </div>
+
+    </form>
+
+    <div>
+
+    </div>
+  </div>
+</div>
+
