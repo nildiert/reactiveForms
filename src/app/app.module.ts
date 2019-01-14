@@ -10,7 +10,7 @@ import { FormularioComponent } from './formulario/formulario.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FormularioComponent
+    FormularioComponent,
   ],
   imports: [
     BrowserModule,
