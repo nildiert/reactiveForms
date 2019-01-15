@@ -1,36 +1,34 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <button class="btn btn-info" (click)="sendToList()" >Guardar</button>
-    </div>
+<div class="col-lg-2 col-md-6 align-self-end mb-1">
+<button class="btn btn-info btn-block" (click)="sendToList()">Guardar</button>
+</div>
+<div class="col-12">
+    <table class="" *ngIf="showList">
+      <thead>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Identificación</th>
+        <th>Telefono</th>
+        <th>Acción</th>
+      </thead>
+      <tbody *ngFor="let item of listUser">
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.lastname }}</td>
+          <td>{{ item.identification }}</td>
+          <td>{{ item.telephone }}</td>
+          <td>
+            <button
+              type="button"
+              (click)="sendToModal(item)"
+              class="btn btn-info"
+            >
+              Ver
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-      <div class="mt-2 col-12" *ngIf="showList">
-
-        <table class=" table table-sm">
-          <thead>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Identificación</th>
-            <th>Telefono</th>
-            <th>Acción</th>
-
-          </thead>
-          <tbody *ngFor="let item of listUser">
-              <tr>
-                  <td>{{item.name}}</td>
-                  <td>{{item.lastname}}</td>
-                  <td>{{item.identification}}</td>
-                  <td>{{item.telephone}}</td>
-                  <td><button  type="button" (click)="sendToModal(item)"  class="btn btn-info">Ver</button> </td>
-
-              </tr>
-          </tbody>
-        </table>
-      </div>
-
-  </div><!-- Fin del row -->
-</div><!-- Fin del container -->
 
 <app-modal></app-modal>
-
-
