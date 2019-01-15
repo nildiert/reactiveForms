@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FormularioComponent implements OnInit {
 
   public formValidate: boolean = false;
+  public listValidate: boolean = false;
   public alert: boolean = false;
   public user: FormGroup;
   constructor(private fb: FormBuilder) { }
@@ -31,12 +32,13 @@ export class FormularioComponent implements OnInit {
       this.reactiveForm = JSON.stringify(value);
       this.formValidate = true;
       this.alert = false;
+      console.log(value);
     }else{
       this.alert = true;
     }
   }
 
-  cleanReactiveForm(){
+  cleanReactiveForm() {
 
     this.user.controls['name'].setValue('');
     this.user.controls['lastname'].setValue('');
@@ -45,6 +47,10 @@ export class FormularioComponent implements OnInit {
     this.formValidate = false;
 
     this.alert = false;
+  }
+  sendToList() {
+    alert(this.reactiveForm);
+    this.listValidate = true;
   }
 
 }

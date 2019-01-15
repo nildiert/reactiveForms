@@ -41,11 +41,14 @@
         <button type="button" class="btn btn-secondary btn-block " (click)="cleanReactiveForm()">Limpiar</button>
       </div>
       <div class="col-2 align-self-end ">
-        <button type="submit" class="btn btn-info btn-block">Enviar</button>
+        <button type="submit" class="btn btn-info btn-block">Verificar Json</button>
       </div>
 
       <div *ngIf="formValidate" class="mt-2 col-12">
         <textarea style="text-align: center" class="form-control" [(ngModel)]="reactiveForm" [ngModelOptions]="{standalone: true}"  disabled></textarea>
+        <div class="d-flex justify-content-end mt-2">
+          <button class="btn btn-info" (click)="sendToList()" >Guardar</button>
+        </div>
       </div>
 
     </form>
@@ -58,5 +61,8 @@
       </div>
   </div>
   <hr>
+  <div class="mt-2">
+    <app-list *ngIf="listValidate"></app-list>
+  </div>
 </div>
 
