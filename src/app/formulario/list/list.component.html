@@ -1,3 +1,36 @@
-<p>
-  list works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-info" (click)="sendToList()" >Guardar</button>
+    </div>
+
+      <div class="mt-2 col-12" *ngIf="showList">
+
+        <table class=" table table-sm">
+          <thead>
+            <th>Full name</th>
+            <th>Lastname</th>
+            <th>Identification</th>
+            <th>Telephone</th>
+            <th>Accion</th>
+
+          </thead>
+          <tbody *ngFor="let item of listUser">
+              <tr>
+                  <td>{{item.name}}</td>
+                  <td>{{item.lastname}}</td>
+                  <td>{{item.identification}}</td>
+                  <td>{{item.telephone}}</td>
+                  <td><button  type="button" (click)="sendToModal(item)"  class="btn btn-info">Ver</button> </td>
+
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
+  </div><!-- Fin del row -->
+</div><!-- Fin del container -->
+
+<app-modal></app-modal>
+
+

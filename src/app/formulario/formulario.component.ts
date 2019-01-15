@@ -10,6 +10,7 @@ export class FormularioComponent implements OnInit {
 
   public formValidate: boolean = false;
   public listValidate: boolean = false;
+  public listInfo: string = '';
   public alert: boolean = false;
   public user: FormGroup;
   constructor(private fb: FormBuilder) { }
@@ -29,11 +30,12 @@ export class FormularioComponent implements OnInit {
   reactiveForm = '';
   onSubmit(value: any): void {
     if (value.name !== '' && value.lastname !== '' && value.identification !== '' && value.telephone !== '') {
+
       this.reactiveForm = JSON.stringify(value);
       this.formValidate = true;
+      this.listValidate = true;
       this.alert = false;
-      console.log(value);
-    }else{
+    } else {
       this.alert = true;
     }
   }
@@ -45,12 +47,11 @@ export class FormularioComponent implements OnInit {
     this.user.controls['identification'].setValue('');
     this.user.controls['telephone'].setValue('');
     this.formValidate = false;
+    this.listValidate = false;
+
 
     this.alert = false;
   }
-  sendToList() {
-    alert(this.reactiveForm);
-    this.listValidate = true;
-  }
+
 
 }
