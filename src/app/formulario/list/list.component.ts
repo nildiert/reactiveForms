@@ -12,7 +12,7 @@ import { Observable } from "rxjs/Observable";
 export class ListComponent implements OnInit {
   public showList: boolean = false;
   // tslint:disable-next-line:no-input-rename
-  @Input() listchild: User[] = [];
+  @Input() listchild: any;
   list = null;
   listUser: User[] = [];
 
@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listchild.subscribe((data: User[]): Observable<User> => {
+    this.listchild.subscribe((data: any) => {
       this.listUser = data;
     });
   }

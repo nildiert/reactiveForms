@@ -18,7 +18,7 @@ export class FormularioComponent implements OnInit {
   public alert: boolean = false;
   public user: FormGroup;
   public reactiveForm: string = "";
-  public listFormEmit: EventEmitter<User> = new EventEmitter();
+  public listFormEmit: EventEmitter<any> = new EventEmitter();
   public printTable: User[] = [];
 
 
@@ -42,7 +42,6 @@ export class FormularioComponent implements OnInit {
     ) {
       this.reactiveForm = JSON.stringify(value);
       this.formValidate = true;
-      this.listValidate = true;
       this.alert = false;
     } else {
       this.alert = true;
@@ -61,8 +60,6 @@ export class FormularioComponent implements OnInit {
   sendDataTable(object: User) {
     this.printTable.push(object);
     this.listFormEmit.emit(this.printTable);
-    setTimeout(() => {
       this.cleanReactiveForm();
-    }, 200);
   }
 }
