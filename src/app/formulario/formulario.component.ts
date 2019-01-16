@@ -29,8 +29,7 @@ export class FormularioComponent implements OnInit {
 
   reactiveForm = '';
   onSubmit(value: any): void {
-    if (value.name !== '' && value.lastname !== '' && value.identification !== '' && value.telephone !== '') {
-
+    if (value.name !== '' && value.lastname !== '' && value.identification !== '' && (value.telephone !== '' && value.telephone !== null)) {
       this.reactiveForm = JSON.stringify(value);
       this.formValidate = true;
       this.listValidate = true;

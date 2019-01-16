@@ -1,16 +1,16 @@
-import { UserSharedService } from './../../services/shared/user-shared.service';
-import { User } from './../../user';
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { UserSharedService } from "./../../services/shared/user-shared.service";
+import { User } from "./../../user";
+import { Component, OnInit, Input, Output } from "@angular/core";
+import { EventEmitter } from "events";
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  selector: "app-list",
+  templateUrl: "./list.component.html",
+  styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
   public showList: boolean = false;
-  @Input('listForm') listchild;
+  @Input("listForm") listchild;
   list = null;
   listUser: User[] = [];
 
@@ -23,13 +23,14 @@ export class ListComponent implements OnInit {
   sendToList() {
     this.list = JSON.parse(this.listchild);
     this.listUser.push(this.list);
-    console.log('Este es el arreglo que estamos guardando');
-    console.log(this.listUser);
-    console.log('Esta es la variable qu esta llegando');
-    console.log(this.listchild);
-    console.log('Esta es la variable qu estamos usando');
-    console.log(this.list);
+
     this.showList = true;
+
+    document.getElementById('name')['value'] = '';
+    document.getElementById('lastname')['value'] = '';
+    document.getElementById('identification')['value'] = '';
+    document.getElementById('telephone')['value'] = '';
+    document.getElementById('jSonString')['value'] = '';
   }
 
   sendToModal(object: User) {

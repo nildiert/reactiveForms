@@ -1,86 +1,76 @@
-
-      <form
-        novalidate
-        [formGroup]="user"
-        (ngSubmit)="onSubmit(user.value)"
+<form novalidate [formGroup]="user" (ngSubmit)="onSubmit(user.value)">
+  <div class="form-row">
+    <div class="col-lg-2 col-md-6 col-sm-12 my-1">
+      <label for="">Nombres</label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Tus nombres"
+        [formControl]="user.controls['name']"
+        id="name"
+      />
+    </div>
+    <div class="col-lg-2 col-md-6 col-sm-12 my-1">
+      <label for="">Apellidos</label>
+      <input
+        class="form-control"
+        placeholder="Tus apellidos"
+        [formControl]="user.controls['lastname']"
+        type="text"
+        id="lastname"
+      />
+    </div>
+    <div class="col-lg-2 col-md-6 col-sm-12 my-1">
+      <label for="">Identificación</label>
+      <input
+        class="form-control"
+        placeholder="Tu Identificación"
+        [formControl]="user.controls['identification']"
+        type="text"
+        id="identification"
+      />
+    </div>
+    <div class="col-lg-2 col-md-6 col-sm-12 my-1">
+      <label for="">Telefono</label>
+      <input
+        class="form-control"
+        placeholder="Tu telefono"
+        [formControl]="user.controls['telephone']"
+        type="number"
+        id="telephone"
+      />
+    </div>
+    <div class="col-lg-2 col-md-6 align-self-end mb-1">
+      <button
+        type="button"
+        class="btn btn-secondary btn-block "
+        (click)="cleanReactiveForm()"
       >
-      <div class="form-row">
-          <div class="col-lg-2 col-md-6 col-sm-12 my-1">
+        Limpiar
+      </button>
+    </div>
+    <div class="col-lg-2 col-md-6 align-self-end mb-1">
+      <button type="submit" class="btn btn-info btn-block">
+        Verificar Json
+      </button>
+    </div>
+  </div>
 
-          <label for="">Nombres</label>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Tus nombres"
-            [formControl]="user.controls['name']"
-          />
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-12 my-1">
-          <label for="">Apellidos</label>
-          <input
-            class="form-control"
-            placeholder="Tus apellidos"
-            [formControl]="user.controls['lastname']"
-            type="text"
-          />
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-12 my-1">
-          <label for="">Identificación</label>
-          <input
-            class="form-control"
-            placeholder="Tu Identificación"
-            [formControl]="user.controls['identification']"
-            type="text"
-          />
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-12 my-1">
-          <label for="">Telefono</label>
-          <input
-            class="form-control"
-            placeholder="Tu telefono"
-            [formControl]="user.controls['telephone']"
-            type="number"
-          />
+  <div *ngIf="formValidate" class="mt-2">
+    <textarea
+      style="text-align: center"
+      class="form-control"
+      [(ngModel)]="reactiveForm"
+      [ngModelOptions]="{ standalone: true }"
+      disabled
+      id="jSonString"
+    ></textarea>
+    <div class="d-flex justify-content-end mt-2"></div>
+  </div>
+</form>
 
-        </div>
-        <div class="col-lg-2 col-md-6 align-self-end mb-1">
-            <button
-              type="button"
-              class="btn btn-secondary btn-block "
-              (click)="cleanReactiveForm()"
-            >
-              Limpiar
-            </button>
-          </div>
-          <div class="col-lg-2 col-md-6 align-self-end mb-1">
-            <button type="submit" class="btn btn-info btn-block">
-              Verificar Json
-            </button>
-          </div>
-      </div>
+<div *ngIf="alert" class="mt-2 alert alert-danger" role="alert">
+  Llena todos los campos o verifica que estas ingresando los valores correctos!!
+</div>
 
-
-
-        <div *ngIf="formValidate" class="mt-2">
-          <textarea
-            style="text-align: center"
-            class="form-control"
-            [(ngModel)]="reactiveForm"
-            [ngModelOptions]="{ standalone: true }"
-            disabled
-          ></textarea>
-          <div class="d-flex justify-content-end mt-2"></div>
-        </div>
-
-      </form>
-
-
-      <div *ngIf="alert" class="mt-2 alert alert-danger" role="alert">
-        Llena todos los campos!!
-      </div>
-
-
-     <app-list *ngIf="listValidate" [listForm]="reactiveForm"></app-list>
-
-
-
+<app-list *ngIf="listValidate" [listForm]="reactiveForm"></app-list>
