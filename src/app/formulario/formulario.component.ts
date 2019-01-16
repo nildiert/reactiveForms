@@ -1,35 +1,45 @@
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators
+} from "@angular/forms";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { User } from "../user";
 
 @Component({
-  selector: 'app-formulario',
-  templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css']
+  selector: "app-formulario",
+  templateUrl: "./formulario.component.html",
+  styleUrls: ["./formulario.component.css"]
 })
 export class FormularioComponent implements OnInit {
-
   public formValidate: boolean = false;
-  public listValidate: boolean = false;
-  public listInfo: string = '';
+  public listInfo: string = "";
   public alert: boolean = false;
   public user: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  public reactiveForm: string = "";
+  public listFormEmit: EventEmitter<User> = new EventEmitter();
+  public printTable: User[] = [];
+
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.user = this.fb.group({
-      name : '',
-      lastname : '',
-      identification : '',
-      telephone : ''
-
+      name: "",
+      lastname: "",
+      identification: "",
+      telephone: ""
     });
   }
 
-
-
-  reactiveForm = '';
   onSubmit(value: any): void {
-    if (value.name !== '' && value.lastname !== '' && value.identification !== '' && (value.telephone !== '' && value.telephone !== null)) {
+    if (
+      value.name !== "" &&
+      value.lastname !== "" &&
+      value.identification !== "" &&
+      (value.telephone !== "" && value.telephone !== null)
+    ) {
       this.reactiveForm = JSON.stringify(value);
       this.formValidate = true;
       this.listValidate = true;
@@ -40,17 +50,19 @@ export class FormularioComponent implements OnInit {
   }
 
   cleanReactiveForm() {
-
-    this.user.controls['name'].setValue('');
-    this.user.controls['lastname'].setValue('');
-    this.user.controls['identification'].setValue('');
-    this.user.controls['telephone'].setValue('');
+    this.user.controls["name"].setValue("");
+    this.user.controls["lastname"].setValue("");
+    this.user.controls["identification"].setValue("");
+    this.user.controls["telephone"].setValue("");
     this.formValidate = false;
-    this.listValidate = false;
-
-
     this.alert = false;
   }
 
-
+  sendDataTable(object: User) {
+    this.printTable.push(object);
+    this.listFormEmit.emit(this.printTable);
+    setTimeout(() => {
+      this.cleanReactiveForm();
+    }, 200);
+  }
 }

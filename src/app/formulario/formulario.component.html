@@ -1,4 +1,4 @@
-<form novalidate [formGroup]="user" (ngSubmit)="onSubmit(user.value)">
+<form novalidate [formGroup]="user" (ngSubmit)="onSubmit(user.value)" class="pb-2">
   <div class="row">
       <div class="col-lg-2 col-md-6">
         <label for="">Nombres</label>
@@ -63,10 +63,15 @@
         ></textarea>
     </div>
   </div><!-- Fin del row -->
+  <div class="row justify-content-end">
+    <div class="col-md-12 col-lg-2 align-items-end" *ngIf="formValidate">
+      <button type="button"  (click)="sendDataTable(user.value)"  class=" btn btn-info btn-block">Guardar</button>
+    </div>
+  </div>
 </form>
 <div class="row">
   <div *ngIf="alert" class="col-12 mt-2 alert alert-danger" role="alert">
     Llena todos los campos o verifica que estas ingresando los valores correctos!!
   </div>
 </div>
-<app-list *ngIf="listValidate" [listForm]="reactiveForm"></app-list>
+<app-list [listchild]="listFormEmit" class="mt-2"></app-list>

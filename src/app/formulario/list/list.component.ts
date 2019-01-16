@@ -2,6 +2,7 @@ import { UserSharedService } from "./../../services/shared/user-shared.service";
 import { User } from "./../../user";
 import { Component, OnInit, Input, Output } from "@angular/core";
 import { EventEmitter } from "events";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: "app-list",
@@ -10,28 +11,24 @@ import { EventEmitter } from "events";
 })
 export class ListComponent implements OnInit {
   public showList: boolean = false;
-  @Input("listForm") listchild;
+  // tslint:disable-next-line:no-input-rename
+  @Input() listchild: User[] = [];
   list = null;
   listUser: User[] = [];
 
   event = null;
 
-  constructor(private userShared: UserSharedService) {}
+  constructor(private userShared: UserSharedService) {
 
-  ngOnInit() {}
-
-  sendToList() {
-    this.list = JSON.parse(this.listchild);
-    this.listUser.push(this.list);
-
-    this.showList = true;
-
-    document.getElementById('name')['value'] = '';
-    document.getElementById('lastname')['value'] = '';
-    document.getElementById('identification')['value'] = '';
-    document.getElementById('telephone')['value'] = '';
-    document.getElementById('jSonString')['value'] = '';
   }
+
+  ngOnInit() {
+    this.listchild.subscribe((data: User[]): Observable<User> => {
+      this.listUser = data;
+    });
+  }
+
+
 
   sendToModal(object: User) {
     this.userShared.setUserAlert(object);

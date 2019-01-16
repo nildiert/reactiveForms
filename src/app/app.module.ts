@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { ListComponent } from './formulario/list/list.component';
+import { UserTextareaShowService } from './services/shared/user-textarea-show.service';
 
 
 
@@ -24,7 +25,7 @@ import { ListComponent } from './formulario/list/list.component';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [UserSharedService],
+  providers: [UserSharedService, UserTextareaShowService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

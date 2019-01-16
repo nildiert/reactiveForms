@@ -1,12 +1,8 @@
-<div class="row justify-content-center">
-  <div class="col-md-12 col-sm-12 col-lg-2 mb-2">
-    <button class="btn btn-info btn-block " (click)="sendToList()">Guardar</button>
-  </div>
-</div>
+
 <div class="row">
   <div class="col-12">
     <div class="table-responsive">
-        <table *ngIf="showList" class="table">
+        <table *ngIf="listUser.length > 0" class="table">
           <thead>
             <th>Nombres</th>
             <th>Apellidos</th>
